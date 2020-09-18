@@ -1,0 +1,47 @@
+- name:
+  hosts: all
+  become: yes
+  vars_files:
+    - config.yml
+#   roles:
+    # - role:
+  # pre_tasks:
+  #   - name: "Run the equivalent of `apt-get update` as a separate step"
+  #     apt:
+  #       update_cache: yes
+  #   - name: "Upgrade all packages to the latest version"
+  #     apt:
+  #       name: "*"
+  #       state: latest
+  tasks:
+    - name: "output server information"
+      debug: 
+        msg: "Now accessing {{ server_user_name }}@{{ server_host }}."
+    
+  # TODO: Check file exists then skip 
+    - name: unarchive plasm-dusty binary
+      unarchive:
+        remote_src: true
+        src: "{{ plasm_dusty_binary_url }}"
+        dest: "/usr/local/bin"
+
+    
+    - name: "copy service file"
+      template: 
+        src: plasm-test-net.service.j2
+        dest: /etc/systemd/system/plasm-test-net.service
+        mode: "755"
+    
+    - name: "reload systemd"
+      systemd:
+        daemon_reload: yes
+    
+    - name: "enable plasm test net when restarted"
+      systemd:
+        name: plasm-test-net.service
+        enabled: yes
+    
+    - name: "start plasm test net service"
+      systemd:
+        name: plasm-test-net
+        state: started

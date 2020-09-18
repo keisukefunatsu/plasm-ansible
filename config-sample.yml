@@ -1,0 +1,9 @@
+server_host: "xxx.xxx.xxx.xxx"
+server_user_name: "ubuntu"
+server_user_group: "ubuntu"
+ssh_key_file_path: "~/.ssh/<your_key_path_here>"
+
+plasm_dusty_version: "1.5.0"
+plasm_dusty_binary_url: "https://github.com/staketechnologies/Plasm/releases/download/v{{ plasm_dusty_version }}-dusty/plasm-node-ubuntu-{{ plasm_dusty_version }}-x86_64.tar.xz"
+plasm_dusty_binary_dest: "/home/{{server_user_name}}"
+plasm_node_validator_name: "<your_validator_name_here>"

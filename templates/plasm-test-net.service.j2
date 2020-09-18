@@ -1,0 +1,10 @@
+[Unit]
+Description = plasm testnet
+
+[Service]
+ExecStart = /usr/local/bin/plasm-node --validator --name {{plasm_node_validator_name}} --rpc-cors all
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
