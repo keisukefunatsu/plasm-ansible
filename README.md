@@ -1,11 +1,12 @@
+# what is this
+
+Ansible playbook for ubuntu18.04
+
 ## Prerequisite
-- ubuntu18.04
 - ansible
 
-Install ansible to host machine
+### Command
 
 ```
-sudo apt-add-repository ppa:ansible/ansible
-sudo apt update
-sudo apt install ansible
+ansible-playbook -i hosts.yml playbook.yml
 ```
