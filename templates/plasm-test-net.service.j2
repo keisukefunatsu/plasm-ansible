@@ -2,7 +2,7 @@
 Description = plasm testnet
 
 [Service]
-ExecStart = /usr/local/bin/plasm-node --validator --name {{plasm_node_validator_name}} --rpc-cors all
+ExecStart = /usr/local/bin/plasm-node --validator --name {{plasm_node_validator_name}} --rpc-cors all--unsafe-ws-external --unsafe-rpc-external --rpc-methods=Unsafe
 Restart = always
 Type = simple
 
